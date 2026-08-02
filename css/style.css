@@ -1,0 +1,154 @@
+/* ==========================================================================
+   أبو أديب — نظام التصميم الأساسي (Design Tokens)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* ---- الألوان: لوحة فاخرة مستوحاة من هوية الشعار (بنفسجي + ذهبي على خلفية غرافيت) ---- */
+  --c-bg:            #0b0a10;
+  --c-bg-elevated:   #131019;
+  --c-surface:       #17141f;
+  --c-surface-2:     #1d1826;
+  --c-border:        rgba(255, 255, 255, 0.08);
+  --c-border-strong: rgba(255, 255, 255, 0.16);
+
+  --c-violet-900:    #2c1a5c;
+  --c-violet-700:    #5b2fd6;
+  --c-violet-500:    #8b5cf6;
+  --c-violet-300:    #c3aefc;
+
+  --c-gold-700:      #b8862f;
+  --c-gold-500:      #e8b143;
+  --c-gold-300:      #f4d68a;
+
+  --c-ink-0:         #ffffff;
+  --c-ink-1:         #eae7f0;
+  --c-ink-2:         #a9a3ba;
+  --c-ink-3:         #6f6a82;
+
+  --grad-gold:       linear-gradient(120deg, var(--c-gold-300), var(--c-gold-500) 55%, var(--c-gold-700));
+  --grad-violet:     linear-gradient(135deg, var(--c-violet-500), var(--c-violet-900));
+  --grad-aurora:     radial-gradient(circle at 20% 20%, rgba(139,92,246,0.35), transparent 45%),
+                      radial-gradient(circle at 85% 15%, rgba(232,177,67,0.18), transparent 40%),
+                      radial-gradient(circle at 70% 85%, rgba(91,47,214,0.25), transparent 45%);
+
+  /* ---- الطباعة ---- */
+  --f-display: 'Alexandria', 'Segoe UI', sans-serif;
+  --f-body:    'IBM Plex Sans Arabic', 'Segoe UI', sans-serif;
+
+  --fs-hero:   clamp(2.6rem, 6vw, 5.6rem);
+  --fs-h1:     clamp(2.1rem, 4vw, 3.4rem);
+  --fs-h2:     clamp(1.6rem, 2.8vw, 2.4rem);
+  --fs-h3:     clamp(1.2rem, 1.8vw, 1.5rem);
+  --fs-lead:   clamp(1.05rem, 1.4vw, 1.25rem);
+  --fs-body:   1rem;
+  --fs-small:  0.875rem;
+  --fs-micro:  0.75rem;
+
+  --lh-tight:  1.15;
+  --lh-normal: 1.55;
+  --lh-loose:  1.8;
+
+  --ls-eyebrow: 0.22em;
+
+  /* ---- شبكة الفراغات: أساس 8pt ---- */
+  --sp-1: 0.5rem;   /* 8  */
+  --sp-2: 1rem;     /* 16 */
+  --sp-3: 1.5rem;   /* 24 */
+  --sp-4: 2rem;     /* 32 */
+  --sp-5: 3rem;     /* 48 */
+  --sp-6: 4rem;     /* 64 */
+  --sp-7: 6rem;     /* 96 */
+  --sp-8: 8rem;     /* 128 */
+
+  --container-w: 1280px;
+  --container-pad: clamp(1.25rem, 5vw, 4rem);
+
+  /* ---- الانحناءات ---- */
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --r-full: 999px;
+
+  /* ---- الظلال ---- */
+  --sh-sm: 0 4px 16px rgba(0,0,0,0.35);
+  --sh-md: 0 16px 40px rgba(0,0,0,0.45);
+  --sh-lg: 0 30px 70px -20px rgba(0,0,0,0.6);
+  --sh-gold: 0 20px 45px -12px rgba(232,177,67,0.35);
+  --sh-violet: 0 20px 45px -12px rgba(139,92,246,0.35);
+
+  /* ---- الحركة ---- */
+  --dur-fast:   180ms;
+  --dur-base:   420ms;
+  --dur-slow:   800ms;
+  --ease-out:   cubic-bezier(.16,.84,.44,1);
+  --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+
+  --nav-h: 84px;
+}
+
+/* ==========================================================================
+   إعادة ضبط أساسية
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: auto; /* Lenis يتولى السلاسة */
+  background: var(--c-bg);
+}
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-ink-1);
+  font-family: var(--f-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+ul { list-style: none; margin: 0; padding: 0; }
+svg { display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin: 0;
+  color: var(--c-ink-0);
+}
+
+p { margin: 0; }
+
+::selection { background: var(--c-gold-500); color: #1a1408; }
+
+/* ---- التركيز الظاهر لإمكانية الوصول ---- */
+:focus-visible {
+  outline: 2px solid var(--c-gold-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- احترام تفضيل تقليل الحركة ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- شريط تمرير مخصص ---- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--c-bg); }
+::-webkit-scrollbar-thumb { background: var(--c-surface-2); border-radius: var(--r-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--c-violet-700); }

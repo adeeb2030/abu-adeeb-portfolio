@@ -1,0 +1,100 @@
+/* ==========================================================================
+   الاستجابة (Responsive) — تصميم مستقل لكل نطاق، لا تصغير آلي فقط
+   ========================================================================== */
+
+/* ---- شاشات فائقة الاتساع ---- */
+@media (min-width: 1800px) {
+  :root { --container-w: 1480px; }
+  .masonry { columns: 5 260px; }
+}
+
+/* ---- أجهزة لابتوب قياسية ---- */
+@media (max-width: 1180px) {
+  .masonry { columns: 3 220px; }
+  .hero__stats { gap: var(--sp-4); }
+}
+
+/* ---- أجهزة لوحية (Tablet) ---- */
+@media (max-width: 900px) {
+  :root { --nav-h: 72px; }
+
+  .nav__links { display: none; }
+  .nav__toggle { display: flex; }
+
+  .grid--3 { grid-template-columns: 1fr 1fr; }
+  .masonry { columns: 2 220px; }
+
+  .contact-panel { grid-template-columns: 1fr; }
+  .qr-panel { padding: var(--sp-4); }
+
+  .footer__top { flex-direction: column; gap: var(--sp-4); }
+
+  .hero__visual { display: none; }
+}
+
+/* ---- قائمة الجوال المنسدلة ---- */
+.nav__mobile {
+  position: fixed;
+  inset: var(--nav-h) 0 0 0;
+  z-index: 85;
+  background: rgba(11,10,16,0.98);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  transform: translateY(-12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--dur-base) var(--ease-out);
+}
+.nav__mobile.is-open { transform: translateY(0); opacity: 1; visibility: visible; }
+.nav__mobile a { font-family: var(--f-display); font-size: 1.4rem; font-weight: 700; color: var(--c-ink-1); }
+
+body.menu-open .nav__toggle span { opacity: 0; }
+body.menu-open .nav__toggle::before { transform: translateY(4.5px) rotate(45deg); }
+body.menu-open .nav__toggle::after { transform: translateY(-4.5px) rotate(-45deg); }
+
+/* ---- هواتف كبيرة ---- */
+@media (max-width: 640px) {
+  :root {
+    --sp-7: 4rem;
+    --sp-8: 5rem;
+  }
+
+  .grid--3, .grid--2 { grid-template-columns: 1fr; }
+  .masonry { columns: 1; }
+
+  .hero { padding-top: var(--nav-h); min-height: auto; padding-bottom: var(--sp-6); }
+  .hero__cta { flex-direction: column; align-items: stretch; }
+  .hero__cta .btn { justify-content: center; }
+
+  .contact-list { padding: var(--sp-4); }
+  .qr-panel { padding: var(--sp-4) var(--sp-3); }
+
+  .lightbox__nav { width: 42px; height: 42px; }
+  .lightbox__nav--prev { right: var(--sp-2); }
+  .lightbox__nav--next { left: var(--sp-2); }
+  .lightbox__close { top: var(--sp-2); left: var(--sp-2); }
+  .lightbox__figure { max-width: 92vw; }
+}
+
+/* ---- هواتف صغيرة / أجهزة قابلة للطي (مغلقة) ---- */
+@media (max-width: 380px) {
+  :root { --container-pad: 1rem; }
+  .section-title { font-size: 1.9rem; }
+  .btn { padding: 13px 22px; font-size: 0.82rem; }
+}
+
+/* ---- دعم الأجهزة القابلة للطي (وضع مفتوح / شاشة عريضة قصيرة) ---- */
+@media (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+  .hero { min-height: auto; padding-block: calc(var(--nav-h) + var(--sp-4)) var(--sp-4); }
+  .hero__visual { display: none; }
+}
+
+/* ---- طباعة ---- */
+@media print {
+  .nav, .loader, .cursor-dot, .cursor-ring, .back-to-top, .scroll-progress { display: none !important; }
+  body { background: #fff; color: #000; }
+}

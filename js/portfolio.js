@@ -30,7 +30,7 @@ function buildManifest() {
   return items;
 }
 
-export function initPortfolio() {
+function initPortfolio() {
   const grid = document.querySelector('[data-portfolio-grid]');
   const filterWrap = document.querySelector('[data-portfolio-filters]');
   if (!grid) return;

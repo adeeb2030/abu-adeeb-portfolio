@@ -1,14 +1,13 @@
 /**
  * app.js — نقطة الدخول الرئيسية
  * يهيّئ شاشة التحميل، التمرير السلس (Lenis)، ثم يشغّل بقية الوحدات.
+ * ملاحظة: هذا الملف عبارة عن سكربت عادي (لا ES Module) عن قصد،
+ * حتى يعمل الموقع مباشرة بفتح index.html بنقرتين بدون خادم محلي.
+ * initNavigation / initPortfolio / initAnimations معرّفة عالميًا
+ * عبر الملفات المحمّلة قبله في index.html.
  */
-import { initNavigation } from './navigation.js';
-import { initPortfolio } from './portfolio.js';
-import { initAnimations } from './animations.js';
 
-document.documentElement.classList.remove('no-js');
-
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotionApp = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------------------------------------------------------------
    1) شاشة التحميل الفاخرة
@@ -32,7 +31,7 @@ function runLoader() {
     };
 
     // شريط تقدّم بحد أدنى زمني حتى لا تومض الشاشة بسرعة مفرطة
-    const minTimer = new Promise((r) => setTimeout(r, reduceMotion ? 200 : 900));
+    const minTimer = new Promise((r) => setTimeout(r, reduceMotionApp ? 200 : 900));
 
     if (images.length === 0) {
       fill.style.width = '100%';
@@ -63,7 +62,7 @@ function runLoader() {
    2) التمرير السلس (Lenis)
 --------------------------------------------------------------- */
 function initSmoothScroll() {
-  if (reduceMotion || typeof window.Lenis === 'undefined') return;
+  if (reduceMotionApp || typeof window.Lenis === 'undefined') return;
 
   const lenis = new window.Lenis({
     duration: 1.1,
@@ -118,24 +117,52 @@ function initQRCode() {
 }
 
 /* ---------------------------------------------------------------
-   4) التشغيل
+   4) شبكة أمان: مهما حدث (خطأ برمجي، فشل تحميل مكتبة، بطء شبكة)
+   يجب ألا تبقى شاشة التحميل عالقة ولا يبقى أي جزء من الصفحة مخفيًا.
+--------------------------------------------------------------- */
+function forceRevealEverything() {
+  const loader = document.querySelector('.loader');
+  if (loader) {
+    loader.style.opacity = '0';
+    loader.style.visibility = 'hidden';
+  }
+  document.body.style.overflow = '';
+  document.querySelectorAll('[data-reveal], [data-hero-eyebrow], [data-hero-lead], [data-hero-cta], [data-hero-visual], [data-hero-scroll]')
+    .forEach((el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+}
+
+/* ---------------------------------------------------------------
+   5) التشغيل
 --------------------------------------------------------------- */
 async function boot() {
   document.body.style.overflow = 'hidden';
 
-  initNavigation();
-  initPortfolio();
-  initQRCode();
+  try {
+    initNavigation();
+    initPortfolio();
+    initQRCode();
+  } catch (err) {
+    console.error('تعذّر تهيئة أحد مكوّنات الصفحة:', err);
+  }
 
-  await runLoader();
+  try {
+    await runLoader();
+  } catch (err) {
+    console.error('تعذّر إكمال شاشة التحميل:', err);
+    forceRevealEverything();
+  }
 
-  initSmoothScroll();
-  initAnimations();
-
-  if (window.__playHeroIntro) window.__playHeroIntro();
-
-  if (window.ScrollTrigger) {
-    setTimeout(() => window.ScrollTrigger.refresh(), 300);
+  try {
+    initSmoothScroll();
+    initAnimations();
+    if (window.__playHeroIntro) window.__playHeroIntro();
+    if (window.ScrollTrigger) setTimeout(() => window.ScrollTrigger.refresh(), 300);
+  } catch (err) {
+    console.error('تعذّر تشغيل الحركات، سيتم عرض المحتوى مباشرة:', err);
+    forceRevealEverything();
   }
 }
 
@@ -144,3 +171,6 @@ if (document.readyState === 'loading') {
 } else {
   boot();
 }
+
+// شبكة أمان أخيرة: مهما حدث، لا يجوز أن تبقى الصفحة مخفية بعد 6 ثوانٍ.
+setTimeout(forceRevealEverything, 6000);

@@ -4,19 +4,25 @@
    الفئات هنا هي نقطة البداية (الحالة الأولية)، وGSAP يتولى التنفيذ
    ========================================================================== */
 
-/* ---- حالة ابتدائية لعناصر الكشف عند التمرير ---- */
-[data-reveal] {
+/* ---- حالة ابتدائية لعناصر الكشف عند التمرير ----
+   تُفعَّل فقط عندما تنجح جافاسكربت بإضافة الصنف js على <html>.
+   بدون هذا الصنف (JS معطّلة أو فشل التحميل) يبقى كل المحتوى ظاهرًا بالكامل. */
+.js [data-reveal] {
   opacity: 0;
 }
-[data-reveal="up"]     { transform: translateY(46px); }
-[data-reveal="scale"]  { transform: scale(0.92); }
-[data-reveal="side"]   { transform: translateX(40px); }
+.js [data-reveal="up"]     { transform: translateY(46px); }
+.js [data-reveal="scale"]  { transform: scale(0.92); }
+.js [data-reveal="side"]   { transform: translateX(40px); }
 
-/* الحالة النهائية تُدار بواسطة GSAP، لكن نوفر fallback بدون JS */
-.no-js [data-reveal] {
-  opacity: 1 !important;
-  transform: none !important;
-}
+/* شبكة الأعمال ونصوص الهيرو الفرعية تستخدم نفس النظام */
+.js [data-hero-eyebrow],
+.js [data-hero-lead],
+.js [data-hero-cta],
+.js [data-hero-scroll] { opacity: 0; transform: translateY(20px); }
+.js [data-hero-visual] { opacity: 0; transform: scale(0.92); }
+
+/* شبكة صور الهيرو نفسها (الصور الثلاث) تبقى ظاهرة دائمًا لتفادي أي التباس */
+.hero__visual-img { opacity: 1; }
 
 /* ---- حروف مقسّمة للعنوان الرئيسي (SplitText يدوي) ---- */
 .split-line {

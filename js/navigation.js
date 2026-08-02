@@ -2,7 +2,7 @@
  * navigation.js
  * إدارة شريط التنقل، القائمة الجوّالة، مؤشر تقدّم التمرير، وزر العودة للأعلى.
  */
-export function initNavigation() {
+function initNavigation() {
   const nav = document.querySelector('.nav');
   const toggle = document.querySelector('.nav__toggle');
   const mobileMenu = document.querySelector('.nav__mobile');

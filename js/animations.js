@@ -26,16 +26,21 @@ function splitLines(el) {
   return el.querySelectorAll('.split-line > span');
 }
 
-export function initAnimations() {
+function initAnimations() {
   const gsap = window.gsap;
   const ScrollTrigger = window.ScrollTrigger;
 
   if (!gsap) {
-    // بدون GSAP: أظهر كل شيء مباشرة حتى لا يبقى المحتوى مخفيًا
-    document.querySelectorAll('[data-reveal]').forEach((el) => {
-      el.style.opacity = 1;
-      el.style.transform = 'none';
-    });
+    // بدون GSAP (فشل تحميل المكتبة من الشبكة مثلًا): أظهر كل شيء فورًا
+    // حتى لا يبقى أي جزء من الصفحة مخفيًا بشكل دائم.
+    document
+      .querySelectorAll(
+        '[data-reveal], [data-hero-eyebrow], [data-hero-lead], [data-hero-cta], [data-hero-visual], [data-hero-scroll]'
+      )
+      .forEach((el) => {
+        el.style.opacity = 1;
+        el.style.transform = 'none';
+      });
     return;
   }
 
@@ -81,20 +86,7 @@ export function initAnimations() {
     });
   });
 
-  /* ---------------- 3) تدرّج ظهور بطاقات الشبكة ---------------- */
-  document.querySelectorAll('[data-reveal-stagger]').forEach((group) => {
-    const items = group.querySelectorAll(':scope > *');
-    gsap.to(items, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      stagger: 0.1,
-      scrollTrigger: { trigger: group, start: 'top 85%' },
-    });
-  });
-
-  /* ---------------- 4) الطبقات المتوازية (Parallax) ---------------- */
+  /* ---------------- 3) الطبقات المتوازية (Parallax) ---------------- */
   document.querySelectorAll('[data-parallax]').forEach((el) => {
     const speed = parseFloat(el.dataset.parallax) || 0.3;
     gsap.to(el, {

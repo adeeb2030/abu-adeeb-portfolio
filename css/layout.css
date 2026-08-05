@@ -1,0 +1,200 @@
+/* ==========================================================================
+   الهيكل والتخطيط (Layout)
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--sp-8);
+}
+
+.section--tight { padding-block: var(--sp-6); }
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: var(--sp-6);
+}
+
+.section-head.center {
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--f-display);
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: var(--ls-eyebrow);
+  color: var(--c-gold-500);
+  margin-bottom: var(--sp-2);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--c-gold-500);
+}
+
+.section-head.center .eyebrow::before { display: none; }
+
+.section-title {
+  font-size: var(--fs-h1);
+  margin-bottom: var(--sp-2);
+}
+
+.section-lead {
+  font-size: var(--fs-lead);
+  color: var(--c-ink-2);
+  line-height: var(--lh-loose);
+  max-width: 58ch;
+}
+
+.section-head.center .section-lead { margin-inline: auto; }
+
+/* ---- شبكات مساعدة ---- */
+.grid {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+/* ---- طبقة الخلفية الجوية (Aurora) ---- */
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--grad-aurora);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- خط فاصل فراغي (بدون أشرطة زخرفية) ---- */
+.divider-space { height: var(--sp-7); }
+
+/* ==========================================================================
+   قسم الهيرو
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--nav-h);
+  overflow: hidden;
+}
+
+.hero__container {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+}
+
+.hero__title {
+  font-size: var(--fs-hero);
+  line-height: 1.18;
+  margin-bottom: var(--sp-3);
+}
+
+.hero__lead {
+  font-size: var(--fs-lead);
+  color: var(--c-ink-2);
+  line-height: var(--lh-loose);
+  max-width: 56ch;
+  margin-bottom: var(--sp-4);
+}
+
+.hero__cta {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+/* ---- الشريط البصري الجانبي: ثلاث بطاقات صور عائمة بعمق متدرّج ---- */
+.hero__visual {
+  position: absolute;
+  top: 50%;
+  left: var(--container-pad);
+  transform: translateY(-50%);
+  width: min(30vw, 380px);
+  height: 70vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero__visual-img {
+  position: absolute;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  object-fit: cover;
+  box-shadow: var(--sh-lg);
+  border: 1px solid var(--c-border);
+}
+
+.hero__visual-img:nth-child(1) { width: 62%; height: 46%; top: 0; left: 0; }
+.hero__visual-img:nth-child(2) { width: 50%; height: 38%; top: 30%; left: 42%; }
+.hero__visual-img:nth-child(3) { width: 44%; height: 34%; top: 66%; left: 8%; }
+
+/* ---- مؤشر التمرير بالهيرو ---- */
+.hero__scroll {
+  position: absolute;
+  bottom: var(--sp-4);
+  right: var(--container-pad);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--c-ink-3);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.hero__scroll-track {
+  width: 1px;
+  height: 40px;
+  background: var(--c-border-strong);
+  position: relative;
+  overflow: hidden;
+}
+.hero__scroll-track::after {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 100%;
+  height: 40%;
+  background: var(--c-gold-500);
+  animation: scrollTrack 1.8s ease-in-out infinite;
+}
+@keyframes scrollTrack {
+  0%   { top: -40%; }
+  100% { top: 100%; }
+}
+
+@media (max-width: 900px) {
+  .hero__visual { display: none; }
+}

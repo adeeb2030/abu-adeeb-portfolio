@@ -1,0 +1,300 @@
+/* ==========================================================================
+   الهيكل والتخطيط (Layout)
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--sp-8);
+}
+
+.section--tight { padding-block: var(--sp-6); }
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: var(--sp-6);
+}
+
+.section-head.center {
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--f-display);
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: var(--ls-eyebrow);
+  color: var(--c-gold-500);
+  margin-bottom: var(--sp-2);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--c-gold-500);
+}
+
+.section-head.center .eyebrow::before { display: none; }
+
+.section-title {
+  font-size: var(--fs-h1);
+  margin-bottom: var(--sp-2);
+}
+
+.section-lead {
+  font-size: var(--fs-lead);
+  color: var(--c-ink-2);
+  line-height: var(--lh-loose);
+  max-width: 58ch;
+}
+
+.section-head.center .section-lead { margin-inline: auto; }
+
+/* ---- شبكات مساعدة ---- */
+.grid {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+/* ---- طبقة الخلفية الجوية (Aurora) ---- */
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--grad-aurora);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- خط فاصل فراغي (بدون أشرطة زخرفية) ---- */
+.divider-space { height: var(--sp-7);
+}
+
+/* ==========================================================================
+   HERO
+========================================================================== */
+
+.hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    padding-top:var(--nav-h);
+}
+
+.hero__container{
+    position:relative;
+    z-index:2;
+
+    display:flex;
+    flex-direction:row-reverse;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:120px;
+
+    width:100%;
+    max-width:1320px;
+    margin:0 auto;
+    padding:0 var(--container-pad);
+}
+
+.hero__content{
+    flex:1;
+    max-width:700px;
+    text-align:left;
+}
+
+.hero__visual{
+    position:relative;
+    width:470px;
+    height:650px;
+    flex-shrink:0;
+    pointer-events:none;
+
+    margin-right:20px;
+}
+
+.hero__visual-img{
+    position:absolute;
+    object-fit:cover;
+    border-radius:24px;
+    border:1px solid var(--c-border);
+    box-shadow:var(--sh-lg);
+}
+
+/* الصورة الأولى */
+.hero__visual-img:nth-child(1){
+    width:250px;
+    height:340px;
+    top:0;
+    right:0;
+}
+
+/* الصورة الثانية */
+.hero__visual-img:nth-child(2){
+    width:210px;
+    height:270px;
+    top:165px;
+    left:10px;
+}
+
+/* الصورة الثالثة */
+.hero__visual-img:nth-child(3){
+    width:190px;
+    height:240px;
+    bottom:0;
+    right:55px;
+}
+.hero__title{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(3.8rem,7vw,6.2rem);
+    line-height:1.02;
+    font-weight:800;
+    letter-spacing:-0.04em;
+    color:#fff;
+    margin-bottom:32px;
+}
+
+.hero__lead{
+    max-width:620px;
+    font-size:1.18rem;
+    line-height:1.8;
+    color:var(--c-ink-2);
+    margin-bottom:40px;
+}
+
+.hero__cta{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.eyebrow{
+    margin-bottom:22px;
+}
+/* ==========================================
+   Hero Scroll Indicator
+========================================== */
+
+.hero__scroll{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+
+    z-index:5;
+}
+
+.hero__scroll span{
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.65);
+}
+
+.hero__scroll-track{
+    position:relative;
+    width:2px;
+    height:60px;
+    background:rgba(255,255,255,.15);
+    overflow:hidden;
+    border-radius:20px;
+}
+
+.hero__scroll-track::after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:-35px;
+    width:100%;
+    height:35px;
+
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        #f5c35c,
+        transparent
+    );
+
+    animation:scrollIndicator 2s linear infinite;
+}
+
+@keyframes scrollIndicator{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(95px);
+    }
+
+}
+/* ========================================================================
+   HERO DIRECTION — Arabic visual flow: text right / images left
+   ======================================================================== */
+.hero__container {
+  direction: ltr;
+  flex-direction: row;
+}
+
+html[dir="rtl"] .hero__container {
+  direction: rtl;
+  flex-direction: row;
+}
+
+html[dir="rtl"] .hero__content {
+  text-align: right;
+}
+
+html[dir="ltr"] .hero__content {
+  text-align: left;
+}
+
+.hero__content { position: relative; z-index: 3; }
+.hero__visual { z-index: 2; }
+
+/* Comfortable Arabic reading rhythm in the About section. */
+html[dir="rtl"] #about .section-lead {
+  line-height: 2.05;
+  max-width: 64ch;
+}
+
+html[dir="rtl"] #about .card__text {
+  line-height: 2;
+}
+
+.hero__visual { margin-right: 0; margin-left: 0; }

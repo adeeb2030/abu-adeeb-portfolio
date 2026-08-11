@@ -1,0 +1,113 @@
+/* ==========================================================================
+   نظام الحركة (Animation System)
+   يعمل بالتكامل مع GSAP وScrollTrigger عبر js/animations.js
+   الفئات هنا هي نقطة البداية (الحالة الأولية)، وGSAP يتولى التنفيذ
+   ========================================================================== */
+
+/* ---- حالة ابتدائية لعناصر الكشف عند التمرير ----
+   تُفعَّل فقط عندما تنجح جافاسكربت بإضافة الصنف js على <html>.
+   بدون هذا الصنف (JS معطّلة أو فشل التحميل) يبقى كل المحتوى ظاهرًا بالكامل. */
+.js [data-reveal] {
+  opacity: 0;
+}
+.js [data-reveal="up"]     { transform: translateY(46px); }
+.js [data-reveal="scale"]  { transform: scale(0.92); }
+.js [data-reveal="side"]   { transform: translateX(40px); }
+
+/* شبكة الأعمال ونصوص الهيرو الفرعية تستخدم نفس النظام */
+.js [data-hero-eyebrow],
+.js [data-hero-lead],
+.js [data-hero-cta],
+.js [data-hero-scroll] { opacity: 0; transform: translateY(20px); }
+.js [data-hero-visual] { opacity: 0; transform: scale(0.92); }
+
+/* شبكة صور الهيرو نفسها (الصور الثلاث) تبقى ظاهرة دائمًا لتفادي أي التباس */
+.hero__visual-img { opacity: 1; }
+
+/* ---- حروف مقسّمة للعنوان الرئيسي (SplitText يدوي) ---- */
+.split-line {
+  overflow: hidden;
+  display: block;
+}
+.split-line > span {
+  display: inline-block;
+  transform: translateY(115%);
+  will-change: transform;
+}
+
+/* ---- تعويم لطيف (Ambient float) ---- */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-18px); }
+}
+.float { animation: floatY 6s var(--ease-in-out) infinite; }
+.float--slow { animation-duration: 9s; }
+.float--delay { animation-delay: 1.4s; }
+
+/* ---- توهج نبضي لعناصر الخلفية ---- */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.85; }
+}
+.pulse-glow { animation: pulseGlow 5s ease-in-out infinite; }
+
+/* ---- دوران بطيء لعنصر زخرفي ---- */
+@keyframes slowSpin {
+  to { transform: rotate(360deg); }
+}
+.slow-spin { animation: slowSpin 30s linear infinite; }
+
+/* ---- عداد الأرقام (تُدار قيمته عبر JS، هذا فقط لضبط الظهور) ---- */
+.counter { font-variant-numeric: tabular-nums; }
+
+/* ---- شريط تحميل الصورة أثناء الـ lazy load ---- */
+.masonry-item img {
+  background: linear-gradient(100deg, var(--c-surface) 30%, var(--c-surface-2) 50%, var(--c-surface) 70%);
+  background-size: 200% 100%;
+}
+.masonry-item img[data-loaded="true"] {
+  animation: none;
+  background: none;
+}
+.masonry-item img:not([data-loaded="true"]) {
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ---- تأثير زجاجي خفيف (Glass) لعناصر مختارة ---- */
+.glass {
+  background: rgba(255,255,255,0.045);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.09);
+}
+/* ---------------------------------------------------------------
+   SPACE BACKGROUND — Ultra Slow Cinematic Motion
+--------------------------------------------------------------- */
+
+@keyframes spaceBackgroundDrift {
+  0% {
+    transform: scale(1.03) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: scale(1.045) translate3d(-0.35%, -0.25%, 0);
+  }
+
+  100% {
+    transform: scale(1.03) translate3d(0.35%, 0.25%, 0);
+  }
+}
+
+body::before {
+  animation: spaceBackgroundDrift 55s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}

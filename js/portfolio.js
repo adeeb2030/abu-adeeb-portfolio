@@ -2,7 +2,7 @@
  * portfolio.js — معرض الأعمال، الفلاتر، وصندوق العرض الكامل.
  */
 
-const COUNTS = { ai: 16, games: 10, sports: 14, services: 9, luxury: 11, products: 15 };
+const COUNTS = { ai: 18, games: 10, sports: 15, services: 9, luxury: 11, products: 17 };
 
 function portfolioTranslations() {
   const t = window.__i18n?.get;

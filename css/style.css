@@ -37,7 +37,7 @@
   --f-display: 'Alexandria', 'Segoe UI', sans-serif;
   --f-body:    'IBM Plex Sans Arabic', 'Segoe UI', sans-serif;
 
-  --fs-hero:   clamp(2.8rem, 6.3vw, 5.9rem);
+  --fs-hero:   clamp(2.4rem, 5.8vw, 5.3rem);
   --fs-h1:     clamp(2.1rem, 4vw, 3.4rem);
   --fs-h2:     clamp(1.6rem, 2.8vw, 2.4rem);
   --fs-h3:     clamp(1.2rem, 1.8vw, 1.5rem);

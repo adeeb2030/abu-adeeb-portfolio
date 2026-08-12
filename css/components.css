@@ -557,6 +557,7 @@ html[dir="rtl"] .hero__title .split-line:last-child {
 }
 
 html[dir="ltr"] .hero__title {
+   font-size: clamp(2.8rem, 4.5vw, 3.7rem);
   letter-spacing: -0.035em;
   line-height: 1.05;
 }

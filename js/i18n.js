@@ -69,7 +69,7 @@
       hero: {
         scroll: 'SCROLL',
         eyebrow: 'GRAPHIC DESIGNER • BRAND IDENTITY • AI CREATIVE',
-        title: 'I DESIGN BRANDS.<br>I CREATE EXPERIENCES.<br>I LAUNCH IDEAS WITH AI.',
+        title: 'I DESIGN BRANDS<br>I CREATE EXPERIENCES<br>I LAUNCH IDEAS WITH AI',
         lead: 'Graphic Designer with 20+ years of business experience, creating premium branding, visual identities, advertising campaigns, and AI-powered creative solutions.',
         portfolio: 'View My Work',
         contact: 'Contact Me'

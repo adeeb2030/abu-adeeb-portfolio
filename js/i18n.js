@@ -38,8 +38,8 @@
       contact: {
         eyebrow: 'تواصل معي', title: 'لنبدأ مشروعك القادم معًا',
         lead: 'من الفكرة الأولى إلى التصميم النهائي، أقدّم حلولًا إبداعية تجمع بين الخبرة العملية والتصميم والذكاء الاصطناعي.',
-        email: 'البريد الإلكتروني', instagram: 'إنستغرام', tiktok: 'تيك توك', website: 'الموقع',
-        qrAria: 'رمز استجابة سريعة لموقع أبو أديب', qrText: 'امسح الرمز لزيارة الموقع مباشرة'
+        email: 'البريد الإلكتروني', whatsapp: 'واتساب', linkedin: 'لينكدإن',
+        qrAria: 'رمز استجابة سريعة لموقع أبو أديب', qrText: 'امسح الرمز لزيارة صفحة التواصل', socialAria: 'روابط التواصل الاجتماعي'
       },
       footer: {
         tag: 'تصميم إعلاني وهوية بصرية مدعومة بالذكاء الاصطناعي، بخبرة تجمع بين الإدارة والإبداع.',
@@ -94,8 +94,8 @@
       contact: {
         eyebrow: 'GET IN TOUCH', title: "Let's Build Your Next Project Together",
         lead: 'From the first idea to the final design, I create practical creative solutions combining business experience, design, and AI.',
-        email: 'EMAIL', instagram: 'INSTAGRAM', tiktok: 'TIKTOK', website: 'WEBSITE',
-        qrAria: 'QR code for Abu Adeeb website', qrText: 'Scan to visit the website directly'
+        email: 'EMAIL', whatsapp: 'WHATSAPP', linkedin: 'LINKEDIN',
+        qrAria: 'QR code for Abu Adeeb website', qrText: 'Scan to visit the contact page', socialAria: 'Social media links'
       },
       footer: {
         tag: 'Advertising design and visual identity powered by AI, backed by business and creative experience.',

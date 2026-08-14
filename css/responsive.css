@@ -25,6 +25,8 @@
   .masonry { columns: 2 220px; }
 
   .contact-panel { grid-template-columns: 1fr; }
+  .contact-list { grid-column: 1; grid-row: 1; }
+  .qr-panel { grid-column: 1; grid-row: 2; }
   .qr-panel { padding: var(--sp-4); }
 
   .footer__top { flex-direction: column; gap: var(--sp-4); }

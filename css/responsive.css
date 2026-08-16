@@ -55,7 +55,11 @@ html[dir=ltr] #contact .contact-list::before{content:"Contact Me"}html[dir=ltr] 
 
 /* CONTACT TITLE — سطر واحد + إبراز كلمة معًا */
 #contact .section-title {
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #contact .contact-title-accent {

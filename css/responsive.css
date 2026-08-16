@@ -54,13 +54,16 @@ html[dir=ltr] .hero__title { font-size:clamp(2.05rem,9vw,2.8rem);line-height:1.2
 html[dir=ltr] #contact .contact-list::before{content:"Contact Me"}html[dir=ltr] #contact .contact-social::before{content:"Follow me on"}
 
 /* CONTACT TITLE — سطر واحد + إبراز كلمة معًا */
+/* CONTACT TITLE */
 #contact .section-title {
   white-space: normal;
   text-align: center;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-   html[dir="rtl"] #contact .section-title {
+}
+
+html[dir="rtl"] #contact .section-title {
   white-space: nowrap;
 }
 

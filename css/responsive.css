@@ -44,7 +44,7 @@ html[dir=ltr] .hero__title { font-size:clamp(2.05rem,9vw,2.8rem);line-height:1.2
 #contact .contact-row__value{width:100%;margin-top:3px;color:rgba(255,255,255,.96);font-size:1rem;font-weight:600;direction:ltr;text-align:right;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #contact .contact-social{position:relative;display:flex;align-items:center;justify-content:center;gap:18px;width:100%;margin-top:auto;padding:48px 0 0;border-top:1px solid rgba(255,255,255,.10)}
 #contact .contact-social::before{content:"تابعني على";position:absolute;top:12px;left:50%;transform:translateX(-50%);color:#f3c45a;font-family:var(--f-display);font-size:.98rem;font-weight:700;white-space:nowrap}
-#contact .contact-social::after{content:"";position:absolute;top:38px;left:50%;width:34px;height:1px;transform:translateX(-50%);background:#f3c45a}
+
 #contact .contact-social__link{width:58px;height:58px;border-radius:50%;border:1px solid rgba(255,255,255,.16);color:#f3c45a;background:rgba(255,255,255,.012)} #contact .contact-social__link svg{width:27px;height:27px}
 }
 @media(max-width:900px){

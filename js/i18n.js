@@ -94,7 +94,7 @@
         filtersAria: 'Filter work by sector'
       },
       contact: {
-        eyebrow: 'GET IN TOUCH', title: "Let's Build Your Next Project Together",
+        eyebrow: 'GET IN TOUCH', title: "Let's Build Your Next Project <span class=\"contact-title-accent\">Together</span>",
         lead: 'From the first idea to the final design, I create practical creative solutions combining business experience, design, and AI.',
         email: 'Email',
         whatsapp: 'WhatsApp',

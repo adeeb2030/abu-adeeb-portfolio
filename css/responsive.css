@@ -60,6 +60,8 @@ html[dir=ltr] #contact .contact-list::before{content:"Contact Me"}html[dir=ltr] 
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+   html[dir="rtl"] #contact .section-title {
+  white-space: nowrap;
 }
 
 #contact .contact-title-accent {

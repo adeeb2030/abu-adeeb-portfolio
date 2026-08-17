@@ -1,4 +1,4 @@
-/* ==========================================================================
+/* ============================================================================
    نظام الحركة (Animation System)
    يعمل بالتكامل مع GSAP وScrollTrigger عبر js/animations.js
    الفئات هنا هي نقطة البداية (الحالة الأولية)، وGSAP يتولى التنفيذ
@@ -109,5 +109,25 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   body::before {
     animation: none;
+  }
+}
+
+/* ============================================================================
+   HERO MOBILE — إصلاح نهائي مستقل عن GSAP
+   GSAP يضع data-hero-visual في حالة ابتدائية مخفية، لذلك على الشاشات
+   الصغيرة نعرض حاوية الصور مباشرة ولا نعتمد على توقيت الحركة.
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero__visual[data-hero-visual] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  html[dir="rtl"] .hero__title {
+    line-height: 1.30 !important;
+    letter-spacing: -0.015em !important;
   }
 }

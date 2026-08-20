@@ -2,7 +2,14 @@
    أبو أديب — نظام التصميم الأساسي (Design Tokens)
    ========================================================================== */
 
-
+@media (max-width: 768px) {
+    .hero__container, 
+    .hero__visual {
+        max-width: 100% !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+    }
+}
 
 :root {
   /* ---- الألوان: لوحة فاخرة مستوحاة من هوية الشعار (بنفسجي + ذهبي على خلفية غرافيت) ---- */
@@ -227,4 +234,39 @@ body::before {
 
   transform: scale(1.03);
   will-change: transform;
+}
+/* الحل الجذري الشامل لإلغاء أي فراغ أو تمرير أفقي في الموقع بالكامل */
+html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* إجبار جميع عناصر الموقع على الالتزام بعرض الشاشة وعدم تجاوزها */
+*, *:before, *:after {
+    box-sizing: border-box !important;
+}
+
+/* --- إصلاح أزرار معرض الصور (Lightbox) في الجوال --- */
+@media (max-width: 768px) {
+    
+    /* 1. رفع طبقة الأزرار لتكون في الأمام تماماً وفوق الصورة ولا يختفي منها شيء */
+    .lightbox__nav {
+        z-index: 99999 !important;
+    }
+
+    /* 2. ضبط مكان زر "السابق" ليكون في اليسار */
+    .lightbox__nav--prev {
+        left: 15px !important;
+        right: auto !important;
+    }
+
+    /* 3. ضبط مكان زر "التالي" ليكون في اليمين */
+    .lightbox__nav--next {
+        right: 15px !important;
+        left: auto !important;
+    }
 }

@@ -18,9 +18,41 @@
     order:2;
   }
 }
-.nav__mobile { position:fixed; inset:var(--nav-h) 0 0; z-index:85; background:rgba(11,10,16,.98); backdrop-filter:blur(20px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:var(--sp-4); transform:translateY(-12px); opacity:0; visibility:hidden; transition:all var(--dur-base) var(--ease-out); }
-.nav__mobile.is-open { transform:translateY(0); opacity:1; visibility:visible; } .nav__mobile a { font-family:var(--f-display); font-size:1.4rem; font-weight:700; color:var(--c-ink-1); }
-body.menu-open .nav__toggle span { opacity:0; } body.menu-open .nav__toggle::before { transform:translateY(4.5px) rotate(45deg); } body.menu-open .nav__toggle::after { transform:translateY(-4.5px) rotate(-45deg); }
+.nav__mobile { 
+    position: fixed; 
+    inset: var(--nav-h) 0 0; 
+    z-index: 85; 
+    /* قم بتعديل الرقم الأخير (0.85) للتحكم في مدى شفافية الخلفية */
+    background: rgba(11, 10, 16, 0.85); 
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    gap: var(--sp-4); 
+    transform: translateY(-12px); 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: all var(--dur-base) var(--ease-out); 
+}
+
+.nav__mobile.is-open { 
+    transform: translateY(0); 
+    opacity: 1; 
+    visibility: visible; 
+} 
+
+.nav__mobile a { 
+    font-family: var(--f-display); 
+    font-size: 1.4rem; 
+    font-weight: 700; 
+    color: var(--c-ink-1); 
+}
+
+body.menu-open .nav__toggle span { opacity: 0; } 
+body.menu-open .nav__toggle::before { transform: translateY(4.5px) rotate(45deg); } 
+body.menu-open .nav__toggle::after { transform: translateY(-4.5px) rotate(-45deg); }
 @media (max-width:640px) { :root { --sp-7:4rem; --sp-8:5rem; } .grid--3,.grid--2 { grid-template-columns:1fr; } .masonry { columns:1; } .hero { padding-top:var(--nav-h); min-height:auto; padding-bottom:var(--sp-6); } .hero__cta { flex-direction:column; align-items:stretch; } .hero__cta .btn { justify-content:center; } .contact-list { padding:var(--sp-4); } .qr-panel { padding:var(--sp-4) var(--sp-3); } .lightbox__nav { width:42px;height:42px; } .lightbox__nav--prev { right:var(--sp-2); } .lightbox__nav--next { left:var(--sp-2); } .lightbox__close { top:var(--sp-2);left:var(--sp-2); } .lightbox__figure { max-width:92vw; }
   .hero__visual { width:min(100%, 340px); height:340px; flex-basis:340px; }
 }
@@ -72,7 +104,6 @@ html[dir="rtl"] #contact .section-title { white-space: nowrap; }
 
 /* ============================================================================
    MOBILE HERO V2 — ترتيب بصري صحيح: العنوان ← الوصف ← الصور ← الأزرار
-   لا يغيّر تخطيط Desktop.
    ========================================================================== */
 @media (max-width: 900px) {
   .hero__container {
@@ -82,14 +113,10 @@ html[dir="rtl"] #contact .section-title { white-space: nowrap; }
     justify-content:flex-start;
     gap:0;
   }
-
-  /* نفتح محتوى الهيرو بصريًا حتى يمكن وضع الصور بين الوصف والأزرار،
-     مع إبقاء العناصر التي تستهدفها GSAP موجودة كما هي. */
   .hero__content {
     display:contents;
     max-width:none;
   }
-
   .hero__content > .eyebrow {
     order:1;
     width:100%;
@@ -97,14 +124,12 @@ html[dir="rtl"] #contact .section-title { white-space: nowrap; }
     justify-content:center;
     margin-bottom:18px;
   }
-
   .hero__content > .hero__title {
     order:2;
     width:100%;
     text-align:center;
     margin-bottom:20px;
   }
-
   .hero__content > .hero__lead {
     order:3;
     width:100%;
@@ -112,7 +137,6 @@ html[dir="rtl"] #contact .section-title { white-space: nowrap; }
     margin:0 auto 22px;
     text-align:center;
   }
-
   .hero__visual {
     order:4 !important;
     width:min(100%, 340px);
@@ -120,13 +144,11 @@ html[dir="rtl"] #contact .section-title { white-space: nowrap; }
     flex:0 0 340px;
     margin:0 auto 24px;
   }
-
   .hero__content > .hero__cta {
     order:5;
     width:100%;
     margin-bottom:8px;
   }
-
   .hero__scroll {
     order:6;
   }
@@ -137,11 +159,9 @@ html[dir="rtl"] #contact .section-title { white-space: nowrap; }
     line-height:1.30 !important;
     letter-spacing:-0.015em !important;
   }
-
   html[dir="rtl"] .hero__lead {
     line-height:1.85;
   }
-
   .hero__visual {
     width:min(100%, 330px);
     height:330px;
@@ -156,12 +176,198 @@ html[dir="rtl"] #contact .section-title { white-space: nowrap; }
     flex-basis:280px;
     margin-bottom:18px;
   }
-
   .hero__content > .hero__title {
     margin-bottom:12px;
   }
-
   .hero__content > .hero__lead {
     margin-bottom:14px;
   }
+}
+
+@media (max-width: 768px) {
+    .hero__container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding-top: 10px !important;
+        padding-bottom: 30px !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+    .hero__content {
+        text-align: center !important;
+        width: 100% !important;
+        margin-bottom: 5px !important;
+    }
+    .hero__visual {
+        position: relative !important;
+        width: 320px !important;
+        height: 260px !important;
+        margin: 5px auto 15px auto !important;
+        display: block !important;
+        direction: ltr !important; 
+    }
+    .hero__visual-img:nth-child(1) {
+        position: absolute !important;
+        top: 0px !important;
+        left: 10px !important;
+        width: 135px !important;
+        height: auto !important;
+        z-index: 1;
+        border-radius: 10px !important;
+    }
+    .hero__visual-img:nth-child(2) {
+        position: absolute !important;
+        top: 110px !important;
+        left: 20px !important;
+        width: 145px !important;
+        height: auto !important;
+        z-index: 2;
+        border-radius: 10px !important;
+    }
+    .hero__visual-img:nth-child(3) {
+        position: absolute !important;
+        top: 15px !important;
+        right: 10px !important;
+        width: 145px !important;
+        height: auto !important;
+        z-index: 3;
+        border-radius: 10px !important;
+    }
+    .hero__scroll {
+        display: none !important;
+    }
+    .hero__cta {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+        z-index: 10;
+    }
+    .hero__cta .btn {
+        flex: 1;
+        max-width: 155px;
+        padding: 10px 12px !important;
+        font-size: 0.85rem !important;
+        text-align: center;
+    }
+}
+
+/* ============================================================================
+   تعديل قائمة الجوال النهائي والصحيح (إلغاء تأثير inset القديم تماماً)
+   ========================================================================== */
+@media (max-width: 768px) {
+    header.nav {
+        position: relative !important;
+        z-index: 1000 !important;
+    }
+
+    @media (max-width: 900px) {
+    /* 1. جعل عنصر القائمة الأساسي شفافاً تماماً لكسر سيطرة الجافاسكريبت */
+    .nav__mobile, #mobileMenu.nav__mobile {
+        background: transparent !important;
+        background-color: transparent !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: auto !important;
+        bottom: auto !important;
+        inset: unset !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 15px 0 !important;
+        margin: 0 !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+        border-bottom: 2px solid rgba(232, 177, 67, 0.3) !important;
+        z-index: 999999 !important;
+    }
+
+    /* 2. وضع الخلفية الشفافة والزجاجية على العنصر الوهمي (المنيع ضد الجافاسكريبت) */
+    .nav__mobile::before, #mobileMenu.nav__mobile::before {
+        content: "" !important;
+        position: absolute !important;
+        inset: 0 !important;
+        background: rgba(11, 10, 16, 0.65) !important; /* لون الموقع الداكن بشفافية 65% */
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        z-index: -1 !important; /* لتبقى الخلفية خلف النصوص والأزرار */
+        border-radius: inherit !important;
+    }
+
+    .nav__mobile.is-open, #mobileMenu.nav__mobile.is-open {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+    }
+
+    .nav__mobile a, #mobileMenu.nav__mobile a {
+        color: #ffffff !important;
+        font-size: 1.1rem !important;
+        padding: 12px 20px !important;
+        text-align: center !important;
+        display: block !important;
+        width: 100% !important;
+        text-decoration: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+        position: relative;
+        z-index: 2;
+    }
+}
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        
+        padding: 15px 0 !important;
+        margin: 0 !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+        border-bottom: 2px solid rgba(232, 177, 67, 0.3) !important;
+        z-index: 999999 !important;
+    }
+
+    .nav__mobile.is-open, #mobileMenu.nav__mobile.is-open {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+    }
+
+    .nav__mobile a, #mobileMenu.nav__mobile a {
+        color: #ffffff !important;
+        font-size: 1.1rem !important;
+        padding: 12px 20px !important;
+        text-align: center !important;
+        display: block !important;
+        width: 100% !important;
+        text-decoration: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    }
+
+    .nav__mobile a:last-child, #mobileMenu.nav__mobile a:last-child {
+        border-bottom: none !important;
+    }
+
+    .nav__mobile a:hover, #mobileMenu.nav__mobile a:hover {
+        background: rgba(232, 177, 67, 0.12) !important;
+        color: #e8b143 !important;
+    }
+}
+.hero__visual {
+    margin-top: 45px !important; /* يمكنك زيادة الرقم (مثل 55px) أو تقليله (مثل 30px) حتى تستقر الصور في المكان المثالي */
+}
+/* تصحيح حجم عنوان قسم التواصل في الجوال لئلا ينقطع النص */
+@media (max-width: 768px) {
+    /* استهدفنا عناوين الأقسام الرئيسية في الجوال لتصغيرها قليلاً وتناسب الشاشة */
+    #contact h2, .contact__title, .section__title {
+        font-size: 26px !important; /* يمكنك تجربة 24px إذا أردته أصغر، أو 28px إذا وجدته مناسباً */
+        line-height: 1.4 !important;
+    }
 }
